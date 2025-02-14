@@ -7,15 +7,15 @@ export const FormHandle = () => {
         firstname: string;
         lastname: string;
       };
-      //const [formValuess, setFormValues] = useState<FormValues>({ firstname: '', lastname: '' });
+      const [formValuess, setFormValues] = useState<FormValues>({ firstname: '', lastname: '' });
       const [phoneNumber, setPhoneNumber] = useState('');
-       const [isValid, setIsValid] = useState<boolean | null>(null);
-
+      const [errorMsg, setErrorMsg] = useState('');
+    
     const[values,setValues] =useState({
         firstname:"",
         lastname:"",
         email:"",
-        contact:"",
+        phoneNumber:"",
         gender:"",
         subject:"",
         about:""
@@ -24,34 +24,41 @@ export const FormHandle = () => {
     const handleChanges= (e :React.ChangeEvent<HTMLInputElement| HTMLSelectElement | HTMLTextAreaElement>) =>{
         setValues({...values,[e.target.name]:[e.target.value]})
 
-        const value = e.target.value;
-
-  // Remove anything that's not a digit
-  const digitsOnly = value.replace(/\D/g, '');
-
-  setPhoneNumber(digitsOnly);
-
-  // Check if the phone number is exactly 10 digits long
-  if (digitsOnly.length === 10) {
-    setIsValid(true);  // Valid phone number
-  } else {
-    setIsValid(false);  // Invalid phone number
-  }
+        
     }
+//============================================================================phone number
+    const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+  
+      if (/^\d{0,10}$/.test(value)) {
+        setPhoneNumber(value);
+        setErrorMsg(''); // Clear error message when the input is valid
+      } else {
+        setErrorMsg('Phone number should contain only 10 digits.');
+      }
+    };
 
     const handleSumbit=(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         console.log(values)
+
+//============================================================================phone number
+e.preventDefault();
+if (phoneNumber.length !== 10) {
+  setErrorMsg('Phone number must be exactly 10 digits long.');
+} 
+
+//============================================================================mail
         if (!validateEmail(email)) {
             alert('please enter valid Email');
-          } else {
-            alert('Form submitted successfully!');
-           
-          }
-    }
+          } 
+
+        }
+
 
     const resetVal = (e:FormEvent) => {
        console.log("event",e)
+       //setFormValues({firstname:'',lastname:''})
       };
 
       //.......................................................
@@ -71,14 +78,18 @@ export const FormHandle = () => {
           const value = e.target.value;
           setEmail(value);
       
-          // If email is invalid, set error message
+          
           if (!validateEmail(value)) {
             setError('Please enter a valid email address');
           } else {
-            setError(''); // Clear error if valid
+            setError(''); 
           }
         };
       
+        const handleReset = () => {
+          setError('');
+          setErrorMsg(''); 
+        };
         
 
         //..........................................................
@@ -103,17 +114,15 @@ export const FormHandle = () => {
       />
       {error && <div style={{ color: 'red' }}>{error}</div>}
 
-      <label htmlFor="contact">Contact*</label>
-<input
-  type="number"
-  placeholder="Enter Phone #"
-  name="contact"
-  onChange={(e) => handleChanges(e)}
-  required
-  pattern="^\d{10}$"  
-  title="Phone number must be exactly 10 digits "
-  maxLength={10}  
-/>
+      <label htmlFor="phoneNumber">Phone Number*</label>
+        <input
+          type="text"
+          id="phoneNumber"
+          onChange={handlePhoneNumberChange}
+          maxLength={10}
+          required
+        />
+        {errorMsg && <p style={{ color: 'red' }}>{errorMsg}</p>}
 
             <label htmlFor='gender'>Gender</label>
             <input type='radio' name='gender' onChange={(e)=>handleChanges(e)} />Male
@@ -131,7 +140,7 @@ export const FormHandle = () => {
             <label htmlFor='about'>About</label>
             <textarea name='about' id='about' cols={30} rows={10} placeholder='Enter Description' onChange={(e)=>handleChanges(e)}></textarea>
 
-            <button type='reset' >Reset</button>
+            <button type='reset' onClick={handleReset}  >Reset</button>
             <button type='submit' >Submit</button>
         </form>
     </div>
