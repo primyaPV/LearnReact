@@ -5,7 +5,7 @@ import { Buttons } from './components/Buttons';
 import { Counter } from './components/Counter';
 import { Login } from './components/Login';
 import { FormHandle } from './components/FormHandle';
-import { BrowserRouter as Router, Route, Link, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 
 function App() {
@@ -16,16 +16,14 @@ function App() {
       {/* <Buttons buttonHeight={55} buttonSize={12} buttonWidth={11} /> */}
       {/* <Counter></Counter>
       <Login/> */}
-{/* <BrowserRouter>
 <Router>
-  <Route path={'/'} element={<Navigation/>}>
-
-  </Route>
-</Router>
-</BrowserRouter> */}
-
-      {/* <Navigation/> */}
-      <FormHandle/>
+     <Routes>
+        <Route path="/" element={<FormHandle />} />
+        <Route path="/navigate" element={<Navigation/>} />
+        </Routes>
+    </Router>
+    
+      
     </div>
     
   );
