@@ -6,7 +6,8 @@ import { Counter } from './components/Counter';
 import { Login } from './components/Login';
 import { FormHandle } from './components/FormHandle';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navigation } from './components/Navigation';
+import { LoginPage } from './components/LoginPage';
+import { WelcomePage } from './components/WelcomePage';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
 <Router>
      <Routes>
         <Route path="/" element={<FormHandle />} />
-        <Route path="/navigate" element={<Navigation/>} />
+        <Route path="/loginPage" element={<LoginPage/>} />
+        <Route path="/welcome" element={<WelcomePage/>} />
         </Routes>
     </Router>
     
