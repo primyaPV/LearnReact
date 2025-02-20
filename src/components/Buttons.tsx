@@ -27,9 +27,9 @@ export const Buttons = (props:buttonsInterface) => {
 
   return (
     <>
-    <h3>{props.buttonHeight} </h3>
-    <h3>{props.buttonSize} </h3>
-    <h3>{props.buttonWidth} </h3>
+    <h3>Button Height : {props.buttonHeight} </h3>
+    <h3>Button Size : {props.buttonSize} </h3>
+    <h3>Button Width : {props.buttonWidth} </h3>
     <button onClick={success} >Success</button>
     
     </>

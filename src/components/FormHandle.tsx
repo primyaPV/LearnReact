@@ -1,13 +1,14 @@
 import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const FormHandle = () => {
+export const FormHandle = (props:any) => {
 
   const [selectedGender, setSelectedGender] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [name, getState] = useState('');
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
@@ -50,11 +51,12 @@ export const FormHandle = () => {
 
   const handleSumbit = (e: any) => {
     e.preventDefault()
+   // props.getState(name)
     const formData= new FormData(e.target)
     const data=Object.fromEntries(formData)
     
     //console.log("e.preventDefault() cosole ",e.preventDefault())
-    console.log("datasss",data)
+    console.log("datasss",data.mail)
 
 
     if (phoneNumber.length !== 10) {
@@ -70,12 +72,13 @@ export const FormHandle = () => {
       console.log("if condition")
     }else{
       let formData=localStorage.getItem("formData")
-      const getFormData=formData ? JSON.parse(formData): null
+      const getFormData=formData ? JSON.parse(formData) : null
       getFormData.push(data);
       localStorage.setItem("formData",JSON.stringify(getFormData))
       console.log("else condition")
     }
-    
+
+    handleSubmit();
 
 
 
@@ -190,7 +193,7 @@ export const FormHandle = () => {
         <textarea name='about' id='about' cols={30} rows={10} placeholder='Enter Description' ></textarea>
 
         <button type='reset' onClick={handleReset}  >Reset</button>
-        <button type='submit' onClick={handleSubmit}>Submit</button>
+        <button type='submit' >Submit</button>
       </form>
     </div>
 

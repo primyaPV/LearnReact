@@ -50,9 +50,7 @@ export const LoginPage: React.FC = () => {
       if (!isAuthenticated) {
     alert("Error: Invalid email or password.");
   }
-else {
-  alert("No stored data found.");
-}
+
   }
 
   
