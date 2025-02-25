@@ -12,6 +12,14 @@ import { LearUseEffect } from './learnHooks/LearnUseEffect';
 import { ContectUser } from './learnHooks/ContectUser';
 import { ContextContainer } from './learnHooks/ContextContainer';
 import { ContextMainProps } from '../interfaces/Theme';
+import { TimerApp } from './hookPractice/TimerApp';
+import FetchData from './hookPractice/FetchData';
+import CountTitle from './hookPractice/CountTitle';
+import User1Provider from './hookPractice/context/User1Provider';
+import Uswe2Provider from './hookPractice/context/Uswe2Provider';
+import { AuthContext } from './hookPractice/context/AuthContext';
+import Status from './hookPractice/context/Status';
+import { ToDo } from './task1ToDo/ToDo';
 
 export const ThemeContext = createContext<ContextMainProps>({ theme: "light" });;
 
@@ -33,6 +41,7 @@ const toggleTheme = ()=>{
 }
 
   return (
+    <>
     <ThemeContext.Provider value={{theme:theme}} >
       {/* <HelloWorld/> */}
       {/* <Buttons value="Buttons Component" label="Cancel Button"/> */}
@@ -54,12 +63,25 @@ const toggleTheme = ()=>{
     <FormHandle getState={getState}/>
        */}
        {/* <LearUseEffect/> */}
-       <h4>App Component</h4>
-       <ContextContainer />
+       {/* <h4>App Component</h4> */}
+       {/* <ContextContainer /> */}
        {/* <LearUseEffect/> */}
-       <button onClick={toggleTheme}>Set Theme</button>
+       {/* <button onClick={toggleTheme}>Set Theme</button> */}
+
+       
+      
     </ThemeContext.Provider>
-    
+
+    {/* <AuthContext>
+      <div>
+        <h1>AuthContext Example</h1>
+        <Login />
+        <Status />
+      </div>
+    </AuthContext> */}
+    <ToDo></ToDo>
+
+</>
   );
 }
 
