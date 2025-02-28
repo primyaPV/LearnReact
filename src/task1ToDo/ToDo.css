@@ -102,6 +102,10 @@
   }
   
   .delete-icon:hover {
-    background-color: #e53935;
+    background-color:rgb(233, 23, 20);
   }
+  .strikethrough {
+    text-decoration: line-through;
+    color: grey; 
+}
   

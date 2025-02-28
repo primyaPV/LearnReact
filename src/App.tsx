@@ -20,6 +20,7 @@ import Uswe2Provider from './hookPractice/context/Uswe2Provider';
 import { AuthContext } from './hookPractice/context/AuthContext';
 import Status from './hookPractice/context/Status';
 import { ToDo } from './task1ToDo/ToDo';
+import { HocButton } from './hoc/HocButton';
 
 export const ThemeContext = createContext<ContextMainProps>({ theme: "light" });;
 
@@ -79,7 +80,8 @@ const toggleTheme = ()=>{
         <Status />
       </div>
     </AuthContext> */}
-    <ToDo></ToDo>
+    {/* <ToDo></ToDo> */}
+    <HocButton label={"button"}></HocButton>
 
 </>
   );
